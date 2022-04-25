@@ -34,6 +34,8 @@ public class Practica2Ejer4 {
     System.out.println ();
     System.out.println ("lo que dice el momo es: "+ MensajeOculto);
     
+    
+    System.out.println("Coscu dice ashee");
   }
   
 }
