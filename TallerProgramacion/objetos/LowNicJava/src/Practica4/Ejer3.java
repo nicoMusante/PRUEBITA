@@ -37,7 +37,6 @@ public class Ejer3 {
         System.out.println ("ingrese el titulo del libro: ");
     }
       
-    System.out.println (estante.getLibro("mujercitas").getAutor().getNombre());
-    }
+    
   }
   
