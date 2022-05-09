@@ -1,0 +1,51 @@
+programa LowNic2
+procesos
+  proceso Rectangulo (ES cantFlores:numero)
+  comenzar
+    repetir 2  
+      repetir 5
+        si(HayFlorEnLaEsquina)
+          tomarFlor
+          cantFlores:=cantFlores+1
+        mover
+      derecha
+      repetir 3 
+        si(HayFlorEnLaEsquina)
+          tomarFlor
+          cantFlores:=cantFlores+1
+        mover
+      derecha
+  fin
+areas
+  area1: AreaP(2,2,5,7)
+  area2:AreaP(6,2,9,11)
+robots
+  robot robot1
+  variables
+    cantFlores:numero
+  comenzar
+    cantFlores:=cantFlores+1
+    Rectangulo (cantFlores)
+    Informar(cantFlores)
+  fin
+ 
+  robot robot2
+  variables
+    cantFlores:numero
+  comenzar
+    cantFlores:=cantFlores+1
+    Rectangulo (cantFlores)
+    Informar(cantFlores)
+  fin
+
+variables
+  r1: robot1
+  r2: robot2
+comenzar
+  AsignarArea(r1, area1)
+  AsignarArea(r2, area2)
+  Iniciar(r1,2,2)
+  Iniciar(r2,6,2)
+fin
+
+
