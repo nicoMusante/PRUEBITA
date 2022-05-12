@@ -1,0 +1,91 @@
+programa Ejer3-5
+procesos
+  proceso rectangulo(ES flores:numero; E alto: numero; ancho: numero)
+  comenzar
+    repetir 2
+      repetir alto
+        si (HayFlorEnLaEsquina)
+          tomarFlor
+          flores:= flores+1
+        mover
+      derecha
+      repetir ancho
+        si (HayFlorEnLaEsquina)
+          tomarFlor
+          flores:=flores+1
+        mover
+      derecha
+  fin
+areas
+  area1: AreaP(15, 15, 30, 35)
+  area2: AreaP(40, 40, 55, 60)
+  area3: AreaPC(10, 10, 10, 10)
+  area4: AreaP (2,2, 2,2)
+  area5: AreaP (6,6, 6,6)
+  area6: AreaP (1,1, 1,1)
+robots
+  robot robotF
+  variables
+    cantFlores:numero 
+    ca: numero
+    av: numero
+    alto: numero
+    quienSoy: numero
+  comenzar
+    cantFlores:=0
+    RecibirMensaje (quienSoy, Jefe)
+    RecibirMensaje (ca, Jefe)
+    RecibirMensaje (av, Jefe)
+    RecibirMensaje (alto, Jefe)
+    si (quienSoy = 1)
+      ancho = 30 - ca
+    else
+      ancho = 40 - ca 
+    rectangulo(cantFlores, alto, ancho)
+    mientras(cantFlores>0)
+      BloquearEsquina(10,10)
+      Pos(10,10)
+      depositarFlor
+      cantFlores:=cantFlores - 1
+      Pos(15, 15)
+      LiberarEsquina(10, 10)
+  fin
+  robot robotJ
+  variables
+    altura: numero
+    ca: numero
+    av: numero
+  comenzar
+    EnviarMensaje (1, r1)
+    EnviarMensaje (2, r2)
+    Random(av, 15, 29)
+    EnviarMensaje(av, r1)
+    Random(av, 40, 54)
+    EnviarMensaje(av, r2)
+    Random(ca, 15, 34)
+    EnviarMensaje(ca, r1)
+    Random(ca, 40, 59)
+    EnviarMensaje(ca, r2)
+    Random(altura, 1, (35-ca))
+    EnviarMensaje(altura, r1)
+    Random(altura, 1, (60-ca))
+    EnviarMensaje(altura, r2)
+
+
+
+variables
+  r1: robotF1
+  r2: robotF2
+  Jefe: robotJ
+comenzar
+  AsignarArea(r1, area1)
+  AsignarArea(r1, area4)
+  AsignarArea(r1, area3)
+  AsignarArea(r2, area2)
+  AsignarArea(r2, area5)
+  AsignarArea(r2, area3)
+  AsignarArea(Jefe, area6)
+  Iniciar(r1, 2, 2)
+  Iniciar(r2, 6, 6)
+  Iniciar(Jefe, 1, 1)
+fin

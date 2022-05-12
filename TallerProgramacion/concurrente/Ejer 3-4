@@ -1,0 +1,63 @@
+programa Ejer3-4
+procesos
+  proceso rectangulo(ES flores:numero)
+  comenzar
+    repetir 2
+      repetir 20
+        si (HayFlorEnLaEsquina)
+          tomarFlor
+          flores:=flores+1
+        mover
+      derecha
+      repetir 15
+        si (HayFlorEnLaEsquina)
+          tomarFlor
+          flores:=flores+1
+        mover
+      derecha
+  fin
+areas
+  area1: AreaP(15, 15, 30, 35)
+  area2: AreaP(40, 40, 55, 60)
+  area3: AreaC(10, 10, 10, 10)
+robots
+  robot robotF1
+  variables
+    cantFlores:numero 
+  comenzar
+    cantFlores:=0
+    rectangulo(cantFlores)
+    mientras(cantFlores>0)
+      BloquearEsquina(10,10)
+      Pos(10,10)
+      depositarFlor
+      cantFlores:=cantFlores - 1
+      Pos(15, 15)
+      LiberarEsquina(10, 10)
+  fin
+  
+  robot robotF2
+  variables
+    cantFlores:numero 
+  comenzar
+    cantFlores:=0
+    rectangulo(cantFlores)
+    mientras(cantFlores>0)
+      BloquearEsquina(10,10)
+      Pos(10,10)
+      depositarFlor
+      cantFlores:=cantFlores -1
+      Pos(40, 40)
+      LiberarEsquina(10, 10)
+  fin
+variables
+  r1: robotF1
+  r2: robotF2
+comenzar
+  AsignarArea(r1, area1)
+  AsignarArea(r1, area3)
+  AsignarArea(r2, area2)
+  AsignarArea(r2, area3)
+  Iniciar(r1, 15, 15)
+  Iniciar(r2, 40, 40)
+fin
