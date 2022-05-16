@@ -1,24 +1,25 @@
-programa Ejercicio2-4
+programa Ejercicio2-5
 procesos
-  proceso rectangulo (E alto: numero, E ancho: numero, ES Flores: numero)
+  proceso rectangulo (E alto: numero E ancho: numero ES Flores: numero)
   comenzar
-    Flores = 0
+    Flores:= 0
     repetir 2
       repetir alto
-        mientras HayFlorEnLaEsquina
+        mientras (HayFlorEnLaEsquina)
           tomarFlor
-          Flores = Flores + 1;
+          Flores := Flores + 1
         mover
       derecha
       repetir ancho
-         mientras HayFlorEnLaEsquina
+        mientras (HayFlorEnLaEsquina)
           tomarFlor
-          Flores = Flores + 1;
+          Flores:= Flores + 1
       derecha
+  fin
 areas
   area1: AreaP(2,2, 5,7)
-  area2  AreaP(6,2, 8,10)
-  area3 AreaP (1,1, 1,1)
+  area2: AreaP(6,2, 8,10)
+  area3: AreaP (1,1, 1,1)
 robots
   robot robotF
   variables
@@ -35,5 +36,19 @@ robots
     Alto: numero
     Ancho: numero
     Flores: numero
+  comenzar
+    Alto=5
+    EnviarMensaje(Alto, r1)
+    Ancho=3
+    EnviarMnesaje(Ancho, r2)
+    Alto=8
+    EnviarMensaje(Alto, r1)
+    Ancho=2
+    EnviarMensaje(Ancho, r2)
+
+    
+    
+  fin
+
 
 

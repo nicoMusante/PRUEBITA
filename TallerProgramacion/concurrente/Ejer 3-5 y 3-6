@@ -1,6 +1,6 @@
 programa Ejer3-5
 procesos
-  proceso rectangulo(ES flores:numero; E alto: numero; ancho: numero)
+  proceso rectangulo(ES flores:numero; E alto: numero; E ancho: numero)
   comenzar
     repetir 2
       repetir alto
@@ -20,9 +20,9 @@ areas
   area1: AreaP(15, 15, 30, 35)
   area2: AreaP(40, 40, 55, 60)
   area3: AreaPC(10, 10, 10, 10)
-  area4: AreaP (2,2, 2,2)
-  area5: AreaP (6,6, 6,6)
-  area6: AreaP (1,1, 1,1)
+  area4: AreaP (2, 2, 2, 2)
+  area5: AreaP (6, 6, 6, 6)
+  area6: AreaP (1, 1, 1, 1)
 robots
   robot robotF
   variables
@@ -30,31 +30,43 @@ robots
     ca: numero
     av: numero
     alto: numero
+    ancho:numero
     quienSoy: numero
+    yaJunte:boolean
   comenzar
     cantFlores:=0
     RecibirMensaje (quienSoy, Jefe)
-    RecibirMensaje (ca, Jefe)
     RecibirMensaje (av, Jefe)
+    RecibirMensaje (ca, Jefe)
     RecibirMensaje (alto, Jefe)
-    si (quienSoy = 1)
-      ancho = 30 - ca
-    else
-      ancho = 40 - ca 
+    si (quienSoy= 1)
+      ancho:=30 - av
+    sino
+      ancho:=55 - av
+    Pos(av, ca)
     rectangulo(cantFlores, alto, ancho)
+    Informar("Flores:", cantFlores)
     mientras(cantFlores>0)
       BloquearEsquina(10,10)
       Pos(10,10)
       depositarFlor
       cantFlores:=cantFlores - 1
-      Pos(15, 15)
+      si (quienSoy=1)
+        Pos(2,2)
+      sino
+        Pos(6,6)
       LiberarEsquina(10, 10)
+    yaJunte=V
+    EnviarMensaje(yaJunte, Jefe)
+    
   fin
   robot robotJ
   variables
     altura: numero
     ca: numero
     av: numero
+    yaJunto: numero
+    floresTot: numero
   comenzar
     EnviarMensaje (1, r1)
     EnviarMensaje (2, r2)
@@ -64,18 +76,28 @@ robots
     EnviarMensaje(av, r2)
     Random(ca, 15, 34)
     EnviarMensaje(ca, r1)
-    Random(ca, 40, 59)
-    EnviarMensaje(ca, r2)
     Random(altura, 1, (35-ca))
     EnviarMensaje(altura, r1)
+    Random(ca, 40, 59)
+    EnviarMensaje(ca, r2)
     Random(altura, 1, (60-ca))
     EnviarMensaje(altura, r2)
-
+    floresTot:=0
+    repetir 2  
+      RecibirMensaje(yaJunto, *)
+    Pos(10, 10)
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      floresTot:= floresTot + 1
+    Informar("FloresTotales= ", floresTot)
+      
+     
+  fin
 
 
 variables
-  r1: robotF1
-  r2: robotF2
+  r1: robotF
+  r2: robotF
   Jefe: robotJ
 comenzar
   AsignarArea(r1, area1)
@@ -85,7 +107,9 @@ comenzar
   AsignarArea(r2, area5)
   AsignarArea(r2, area3)
   AsignarArea(Jefe, area6)
+  AsignarArea(Jefe, area3)
   Iniciar(r1, 2, 2)
   Iniciar(r2, 6, 6)
   Iniciar(Jefe, 1, 1)
 fin
+

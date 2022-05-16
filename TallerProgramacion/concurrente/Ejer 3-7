@@ -1,0 +1,75 @@
+programa Ejer3-7
+areas
+  area1:AreaP(9,9,9,9)
+  area2:AreaP(11,9,11,9)
+  area3:AreaP(13,9,13,9)
+  areaC:AreaC(15,23,15,23)
+robots
+  robot robotF1
+  variables
+    flores:numero
+  comenzar
+    flores:=0
+    BloquearEsquina(15,23)
+    Pos(15,23)
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      flores:=flores+1
+      Pos(9,9)
+      LiberarEsquina(15,23)
+      BloquearEsquina(15,23)
+      Pos(15,23)
+    LiberarEsquina(15,23)
+    Informar('Flores', flores)
+  fin
+  robot robotF2
+  variables
+    flores:numero
+  comenzar
+    flores:=0
+    BloquearEsquina(15,23)
+    Pos(15,23)
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      flores:=flores+1
+      Pos(11,9)
+      LiberarEsquina(15,23)
+      BloquearEsquina(15,23)
+      Pos(15,23)
+    LiberarEsquina(15,23)
+    Informar('Flores', flores)
+  fin
+  robot robotF3
+  variables
+    flores:numero
+  comenzar
+    flores:=0
+    BloquearEsquina(15,23)
+    Pos(15,23)
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+      flores:=flores+1
+      Pos(13,9)
+      LiberarEsquina(15,23)
+      BloquearEsquina(15,23)
+      Pos(15,23)
+    LiberarEsquina(15,23)
+    Informar('Flores', flores)
+  fin
+variables
+  r1:robotF1
+  r2:robotF2
+  r3:robotF3
+comenzar
+  AsignarArea(r1, area1)
+  AsignarArea(r2, area2)
+  AsignarArea(r3, area3)
+  AsignarArea(r1, areaC)
+  AsignarArea(r2, areaC)
+  AsignarArea(r3, areaC)
+  Iniciar(r1, 9, 9)
+  Iniciar(r2, 11, 9)
+  Iniciar(r3, 13, 9)
+fin
+
+
